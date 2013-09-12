@@ -82,7 +82,7 @@ def register():
    kmi.active = True
    addon_keymaps.append((km, kmi))
 
-   # create the secene options menu hotkey
+   # create the scene options menu hotkey
    km = kc.keymaps.new(name='3D View', space_type='VIEW_3D')
    kmi = km.keymap_items.new('wm.call_menu', 'ACCENT_GRAVE', 'PRESS', shift=True)
    kmi.properties.name = 'scene.quick_options' 
@@ -120,18 +120,26 @@ def register():
    kmi = km.keymap_items.new('wm.call_menu', 'Q', 'PRESS')
    kmi.properties.name = 'sculpt.tools_menu'
    kmi.active = True
+   addon_keymaps.append((km, kmi))
 
    kmi = km.keymap_items.new('wm.call_menu', 'W', 'PRESS')
    kmi.properties.name = 'sculpt.brush_settings_menu'
    kmi.active = True
+   addon_keymaps.append((km, kmi))
 
    kmi = km.keymap_items.new('sculpt.symmetry', 'X', 'PRESS', shift=True)
    kmi.properties.axis = -1
+   kmi.active = True
+   addon_keymaps.append((km, kmi))
+
    kmi = km.keymap_items.new('sculpt.symmetry', 'Y', 'PRESS', shift=True)
    kmi.properties.axis = 0
+   kmi.active = True
+   addon_keymaps.append((km, kmi))
+
    kmi = km.keymap_items.new('sculpt.symmetry', 'Z', 'PRESS', shift=True)
    kmi.properties.axis = 1
-  
+   kmi.active = True
    addon_keymaps.append((km, kmi))
  
 def unregister():
