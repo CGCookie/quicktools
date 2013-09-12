@@ -39,6 +39,7 @@ import quick_scene
 import bpy
 from bpy.types import AddonPreferences
 
+#### Used for keymap preferences. It's quite buggy for now so so commenting. ####
 # import rna_keymap_ui
 
 # class QuickToolsPreferences(AddonPreferences):
@@ -57,6 +58,8 @@ from bpy.types import AddonPreferences
 #             #km = km.active()
 #             col.context_pointer_set("keymap", km)
 #             rna_keymap_ui.draw_kmi([], kc, km, kmi, col, 0)
+
+####
 
 addon_keymaps = []        
 
