@@ -82,7 +82,7 @@ class QuickPETObjects(bpy.types.Menu):
         if pet:
             layout.operator("object.pet", "Disable PET")
         else:
-            layout.oeprator("object.pet", "Enable Pet")
+            layout.operator("object.pet", "Enable Pet")
 
         layout.separator()
 
