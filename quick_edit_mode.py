@@ -1,7 +1,6 @@
 import bpy
 import os
 from bpy import context
- 
 
 # creates a menu for edit mode tools         
 class QuickMeshTools(bpy.types.Menu):
@@ -42,37 +41,16 @@ class QuickMeshTools(bpy.types.Menu):
         layout.operator("object.add_subsurf", 'Add Subsurf', icon='MOD_SUBSURF')
 
 
-
-
 ### ------------ New hotkeys and registration ------------ ###
-
-# addon_keymaps = []
 
 def register():
     #register the new menus
     bpy.utils.register_class(QuickMeshTools)
-     
-    
-    # wm = bpy.context.window_manager
-    
-    # # creatue the edit mode menu hotkey
-    # km = wm.keyconfigs.addon.keymaps.new(name='Mesh')
-    # kmi = km.keymap_items.new('wm.call_menu', 'Q', 'PRESS')
-    # kmi.properties.name = 'mesh.tools_menu'
-
-    # addon_keymaps.append(km)
 
 def unregister():
     #unregister the new menus
     bpy.utils.unregister_class(QuickMeshTools)
         
-    
-    # # remove keymaps when add-on is deactivated
-    # wm = bpy.context.window_manager
-    # for km in addon_keymaps:
-    #     wm.keyconfigs.addon.keymaps.remove(km)
-    # del addon_keymaps[:]
-
 
 if __name__ == "__main__":
     register()
