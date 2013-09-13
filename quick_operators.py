@@ -10,11 +10,9 @@ applyModifier = ops.object.modifier_apply
 
 ### ----------------------- Object Operators ----------------------- ###
 
-
 ################################################### 
 # Add empty at cursor, making it inactively selected. Also assign empty to modifiers if necessary.   
 ################################################### 
-
 class addTarget(bpy.types.Operator):
     """Add an inactive, selected Empty Object as a modifier target"""
     bl_label = "Add an unactive Empty Object"""
@@ -32,7 +30,6 @@ class addTarget(bpy.types.Operator):
         activeObj = context.active_object
         currentObj = activeObj
         selected = context.selected_objects
-
         
         for obj in selected:
             if obj.type == 'EMPTY':
@@ -57,7 +54,6 @@ class addTarget(bpy.types.Operator):
 ################################################### 
 # Assign target empty object to specified modifier   
 ###################################################
-
 def assignTarget(modifier):
 
     scene = bpy.context.scene
@@ -105,7 +101,6 @@ def assignTarget(modifier):
 ################################################### 
 # Add Modifier function, for use with smart mod classes.  
 ################################################### 
-
 def addMod(modifier, name):
     #ops.object.modifier_add(type=modifier)
     bpy.context.object.modifiers.new(type=modifier, name=name)
@@ -115,14 +110,12 @@ def addMod(modifier, name):
 ################################################### 
 # Add an Array modifier with object offset enabled 
 ###################################################      
-
 class addArray(bpy.types.Operator):
     """Add a Array modifier with object offset, use 2nd selected object as offset object"""
     bl_label = "Add Array Modifier"
     bl_idname = "object.add_array"
     bl_options = {'REGISTER', 'UNDO'}
-       
-    
+          
     # Check to see if an object is selected
     @classmethod
     def poll(cls, context):
@@ -180,7 +173,6 @@ class addArray(bpy.types.Operator):
 ################################################### 
 # Add an Boolean modifier with second object as target 
 ###################################################      
-
 class addBoolean(bpy.types.Operator):
     """Add a Boolean modifier with 2nd selected object as target object"""
     bl_label = "Add Boolean Modifier"
@@ -214,7 +206,6 @@ class addBoolean(bpy.types.Operator):
                         mod.object = bpy.data.objects[target.name]
                         mod.operation = 'DIFFERENCE'
 
-
         self.report({'INFO'}, "Assigned each object to a boolean modifier")  
 
         return {"FINISHED"}
@@ -223,13 +214,11 @@ class addBoolean(bpy.types.Operator):
 ################################################### 
 # Add an Cast modifier with target object assigned if selected 
 ###################################################      
-
 class addCast(bpy.types.Operator):
     """Add a Cast modifier with, use selected empty as target object"""
     bl_label = "Add Cast Modifier"
     bl_idname = "object.add_cast"
-    bl_options = {'REGISTER', 'UNDO'}
-       
+    bl_options = {'REGISTER', 'UNDO'}   
     
     # Check to see if an object is selected
     @classmethod
@@ -291,8 +280,7 @@ class addMirror(bpy.types.Operator):
     """Add a Mirror modifier with clipping, use 2nd selected object as Mirror center"""
     bl_label = "Add Mirror Modifier"
     bl_idname = "object.add_mirror"
-    bl_options = {'REGISTER', 'UNDO'}
-       
+    bl_options = {'REGISTER', 'UNDO'}   
     
     # Check to see if an object is selected
     @classmethod
@@ -357,12 +345,11 @@ class addMirror(bpy.types.Operator):
                         self.report({'INFO'}, "Assigned target object to modifier")      
 
         return {"FINISHED"}
-    
+  
+
 ################################################### 
 # Add a Lattice with auto assigning of the lattice object   
 ################################################### 
-
-
 class addLattice(bpy.types.Operator):
     """Add a Lattice Modifier and auto-assign to selected lattice object"""
     bl_idname = "object.add_lattice"
@@ -424,14 +411,12 @@ class addLattice(bpy.types.Operator):
 ################################################### 
 # Add a Screw modifier with an object axis set  
 ################################################### 
-
 class addScrew(bpy.types.Operator):
     """Add a Screw modifier, use 2nd selected object as object axis"""
     bl_label = "Add Screw Modifier"
     bl_idname = "object.add_screw"
     bl_options = {'REGISTER', 'UNDO'}
        
-    
     # Check to see if an object is selected
     @classmethod
     def poll(cls, context):
@@ -491,7 +476,6 @@ class addScrew(bpy.types.Operator):
 ################################################### 
 # Add a Remesh Modifier with Smooth set as the type   
 ################################################### 
-
 class addRemesh(bpy.types.Operator):
     """Add a Smooth Remesh Modifier"""
     bl_label = "Smooth Remesh"
@@ -512,7 +496,6 @@ class addRemesh(bpy.types.Operator):
 ################################################### 
 # Apply any remesh modifiers   
 ################################################### 
-
 class applyRemesh(bpy.types.Operator):
     """Apply only Remesh Modifiers"""
     bl_label = "Apply Only Remesh Modifiers"
@@ -535,7 +518,6 @@ class applyRemesh(bpy.types.Operator):
         return False
 
     def execute(self, context):
-
         #check for active object
         obj = context.active_object
 
@@ -551,7 +533,6 @@ class applyRemesh(bpy.types.Operator):
 ################################################### 
 # Add a Subsurf Modifier at level 2 and optimal display enabled   
 ################################################### 
-
 class addSubsurf(bpy.types.Operator):
     """Add a Subsurf modifier at level 2 with Optimal Display"""
     bl_label = "Add a Subsurf Modifier"
@@ -582,7 +563,6 @@ class addSubsurf(bpy.types.Operator):
 ################################################### 
 # Apply only subsurf modifiers   
 ################################################### 
-
 class applySubsurf(bpy.types.Operator):
     """Apply only Subsurf Modifiers"""
     bl_label = "Apply Only Subsurf Modifiers"
@@ -621,7 +601,6 @@ class applySubsurf(bpy.types.Operator):
 ################################################### 
 # Apply all modifiers on the active object
 ################################################### 
-
 class applyModifiers(bpy.types.Operator):
     """Apply all modifiers on selected objects"""
     bl_label = "Apply All Modifiers"
@@ -654,7 +633,6 @@ class applyModifiers(bpy.types.Operator):
 ################################################### 
 # Remove all modifiers on selected objects
 ###################################################
-
 class removeModifiers(bpy.types.Operator):
     """Remove Modifiers From Selected Objects"""
     bl_idname = "object.modifier_remove_all"
@@ -679,7 +657,6 @@ class removeModifiers(bpy.types.Operator):
 ################################################### 
 # Halve the mesh and add a Mirror modifier   
 ################################################### 
-
 def select_off_center(self, context):
 
     obj = context.active_object.data
@@ -752,7 +729,6 @@ class halveMesh(bpy.types.Operator):
 ################################################### 
 # Set object origin to center of current mesh selection in edit mdoe   
 ################################################### 
-
 class setObjectOrigin(bpy.types.Operator):
     """Set Object Origin To Center Of Current Mesh Selection"""
     bl_idname = "mesh.set_object_origin"
@@ -778,7 +754,6 @@ class setObjectOrigin(bpy.types.Operator):
 ################################################### 
 # Creating operator for edit PET settings
 ################################################### 
-
 class petEditSettings(bpy.types.Operator):
     """Toggle Setting For Mesh Proportional Editing Tool"""
     bl_idname = "mesh.pet"
@@ -800,7 +775,6 @@ class petEditSettings(bpy.types.Operator):
 ################################################### 
 # Creating operator for object PET settings
 ################################################### 
-
 class petObjectSettings(bpy.types.Operator):
     """Toggle Setting For Objects Proportional Editing Tool"""
     bl_idname = "object.pet"
@@ -818,7 +792,6 @@ class petObjectSettings(bpy.types.Operator):
 ################################################### 
 # Creating operator for brush settings
 ################################################### 
-
 class sculptBrushSetting(bpy.types.Operator):
     """Toggle Setting For Active Brush"""
     bl_idname = "sculpt.brush_setting"
@@ -861,12 +834,10 @@ class sculptBrushSetting(bpy.types.Operator):
 ################################################### 
 # Creating operator for toggling Sculpt Symmetry
 ################################################### 
-
 class sculptSymmetry(bpy.types.Operator):
     """Toggle Symmetry For Sculpting"""
     bl_idname = "sculpt.symmetry"
     bl_label = "Toggle Sculpt Symmetry"
-
     
     axis = bpy.props.IntProperty(name = "Axis",
                     description = "switch between symmetry axis'",
@@ -888,7 +859,6 @@ class sculptSymmetry(bpy.types.Operator):
 ################################################### 
 # Creating operator for toggling Axis Locks
 ################################################### 
-
 class sculptAxisLock(bpy.types.Operator):
     """Toggle Axis Lock In Sculpting"""
     bl_idname = "sculpt.axislock"
@@ -915,7 +885,6 @@ class sculptAxisLock(bpy.types.Operator):
 ################################################### 
 # Creating operator for toggling collapse short edges
 ################################################### 
-
 class sculptCollapseShortEdges(bpy.types.Operator):
     """"Toggle Collapse Short Edges Option"""
     bl_label = "Toggle Collapse Short Edges"
@@ -939,7 +908,6 @@ class sculptCollapseShortEdges(bpy.types.Operator):
 ################################################### 
 # Operator for toggling double sided on selected objects
 ################################################### 
-
 class objectDoubleSided(bpy.types.Operator):
     """Toggle Double Sided Option"""
     bl_label = "Toggle Double Sided"
@@ -975,7 +943,6 @@ class renderOnly(bpy.types.Operator):
 ################################################### 
 # Operator for toggling all edges wire on selected objects
 ################################################### 
-
 class allEdgesWire(bpy.types.Operator):
     """Toggle Wire Display With All Edges"""
     bl_label = "Toggle All Edges Wire"
@@ -999,8 +966,6 @@ class allEdgesWire(bpy.types.Operator):
         scene.objects.active = origActive
         return {"FINISHED"}
 
-
-# boiler plate: register / unregister
 
 def register():
     bpy.utils.register_module(__name__)

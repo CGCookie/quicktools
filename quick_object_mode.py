@@ -69,6 +69,7 @@ class QuickObjectOptions(bpy.types.Menu):
             layout.operator("mesh.faces_shade_smooth", icon='SOLID')
             layout.operator("mesh.faces_shade_flat", icon='MESH_UVSPHERE')            
 
+
 class QuickPETObjects(bpy.types.Menu):
     bl_label = "Quick Proportional Editing Tool For Objects"
     bl_idname = "object.quick_pet_menu"
@@ -93,12 +94,12 @@ class QuickPETObjects(bpy.types.Menu):
         layout.operator("brush.curve_preset", text="Line", icon='LINCURVE').shape = 'LINE'
         layout.operator("brush.curve_preset", text="Max", icon='NOCURVE').shape = 'MAX'
 
+
 def register():
     bpy.utils.register_module(__name__)  
 
 def unregister():
     bpy.utils.unregister_module(__name__)
-        
 
 if __name__ == "__main__":
     register()   

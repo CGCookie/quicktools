@@ -18,10 +18,8 @@ class QuickSceneOptions(bpy.types.Menu):
 def register():
 	bpy.utils.register_class(QuickSceneOptions)
 
-
 def unregister():
 	bpy.utils.unregister_class(QuickSceneOptions)
-
 
 if __name__ == "__main__":
 	register()

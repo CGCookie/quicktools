@@ -21,7 +21,6 @@ class QuickSculptTools(bpy.types.Menu):
         lock_y = bpy.context.tool_settings.sculpt.lock_y
         lock_z = bpy.context.tool_settings.sculpt.lock_z
 
-
         if dyntopo:
             layout.operator("sculpt.dynamic_topology_toggle", 'Disable Dynamic Topology',)
         else:
@@ -130,7 +129,6 @@ class QuickBrushSettings(bpy.types.Menu):
         accumulate = layout.operator("sculpt.brush_setting", "Accumulate")
         accumulate.setting = 'use_accumulate'
         
-
         layout.separator()
 
         layout.label("Brush Falloff")
@@ -141,45 +139,15 @@ class QuickBrushSettings(bpy.types.Menu):
         layout.operator("brush.curve_preset", text="Line", icon='LINCURVE').shape = 'LINE'
         layout.operator("brush.curve_preset", text="Max", icon='NOCURVE').shape = 'MAX'
 
-### ------------ New Hotkeys and registration ------------ ###   
-
-# addon_keymaps = []
 
 def register():
     bpy.utils.register_class(QuickSculptTools)
     bpy.utils.register_class(QuickBrushSettings)
     
-   #  wm = bpy.context.window_manager   
-   #  # create the Sculpt hotkeys
-   #  km = wm.keyconfigs.addon.keymaps.new(name='Sculpt')
-   # # km = bpy.context.window_manager.keyconfigs.active.keymaps['Sculpt']
-    
-   #  kmi = km.keymap_items.new('sculpt.symmetry', 'X', 'PRESS', shift=True)
-   #  kmi.properties.axis = -1
-   #  kmi = km.keymap_items.new('sculpt.symmetry', 'Y', 'PRESS', shift=True)
-   #  kmi.properties.axis = 0
-   #  kmi = km.keymap_items.new('sculpt.symmetry', 'Z', 'PRESS', shift=True)
-   #  kmi.properties.axis = 1
-
-   #  # create sculpt menu hotkey
-   #  kmi = km.keymap_items.new('wm.call_menu', 'Q', 'PRESS')
-   #  kmi.properties.name = 'sculpt.tools_menu' 
-    
-   #  addon_keymaps.append(km)
-
-    
 def unregister():
-
-    #unregister the new operators 
     bpy.utils.unregister_class(QuickSculptTools)
     bpy.utils.unregister_class(QuickBrushSettings)
-    
-    # # remove keymaps when add-on is deactivated
-    # wm = bpy.context.window_manager
-    # for km in addon_keymaps:
-    #     wm.keyconfigs.addon.keymaps.remove(km)
-    # del addon_keymaps[:]
-    
+   
 
 if __name__ == "__main__":
     register()
