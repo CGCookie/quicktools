@@ -903,6 +903,35 @@ class sculptCollapseShortEdges(bpy.types.Operator):
         return {"FINISHED"}
 
 
+################################################### 
+# Creating operator for changing refine method
+################################################### 
+class sculptRefineMethod(bpy.types.Operator):
+    """"Change Refine Method for Dynamic Topology"""
+    bl_label = "Refine Method"
+    bl_idname = "sculpt.refine_method"
+    
+    # test if it is possible to toggle short edge collapse
+    @classmethod    
+    def poll(cls, context):
+        # if dyntopo True, returns True, else returns False :)
+        return context.sculpt_object.use_dynamic_topology_sculpting
+   
+    method = bpy.props.IntProperty(name = "Method",
+                    description = "Change refine method",
+                    default = 0)
+
+    def execute(self, context):
+        if self.method == -1:
+            bpy.context.scene.tool_settings.sculpt.detail_refine_method = 'SUBDIVIDE_COLLAPSE'
+        if self.method == 0:
+            bpy.context.scene.tool_settings.sculpt.detail_refine_method = 'COLLAPSE'
+        if self.method == 1:
+            bpy.context.scene.tool_settings.sculpt.detail_refine_method = 'SUBDIVIDE'
+        return {"FINISHED"}
+
+
+
 ### ----------------------- Display Operators ----------------------- ###
 
 ################################################### 

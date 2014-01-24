@@ -1,7 +1,17 @@
 import bpy
 
 ### ------------ New Menus ------------ ###        
-        
+ 
+class SculptDetailRefineMethods(bpy.types.Menu):
+    bl_idname = "sculpt.detail_refine_methods"
+    bl_label = "Detail Refine Methods"
+    
+    def draw (self, context):
+        layout = self.layout
+        layout.operator("sculpt.refine_method", "Subdivide Collapse").method = -1
+        layout.operator("sculpt.refine_method", "Collapse").method = 0
+        layout.operator("sculpt.refine_method", "Subdivide").method = 1
+
 # creates a menu for Sculpt mode tools
 class QuickSculptTools(bpy.types.Menu):
     
@@ -10,8 +20,13 @@ class QuickSculptTools(bpy.types.Menu):
 
     def draw(self, context):
         layout = self.layout
+        
+        version = bpy.app.version
+
         dyntopo = bpy.context.sculpt_object.use_dynamic_topology_sculpting
-        shortEdges = bpy.context.scene.tool_settings.sculpt.use_edge_collapse
+        
+        if version[0] == 2 and version[1] == 69 and version[2] == 0 :
+            shortEdges = bpy.context.scene.tool_settings.sculpt.use_edge_collapse
 
         symmetry_x = bpy.context.tool_settings.sculpt.use_symmetry_x
         symmetry_y = bpy.context.tool_settings.sculpt.use_symmetry_y
@@ -26,10 +41,15 @@ class QuickSculptTools(bpy.types.Menu):
         else:
             layout.operator("sculpt.dynamic_topology_toggle", 'Enable Dynamic Topology')
 
-        if shortEdges:
-            layout.operator("sculpt.collapse_short_edges", 'Disable Collapse Short Edges',)
-        else:
-            layout.operator("sculpt.collapse_short_edges", 'Enable Collpase Short Edges')
+
+        if version[0] >= 2 and version[1] >= 69 and version[2] > 0:
+            layout.menu(SculptDetailRefineMethods.bl_idname, "Detail Refine Method")
+
+        if version[0] == 2 and version[1] == 69 and version[2] == 0:
+            if shortEdges:
+                layout.operator("sculpt.collapse_short_edges", 'Disable Collapse Short Edges',)
+            else:
+                layout.operator("sculpt.collapse_short_edges", 'Enable Collpase Short Edges')
         
         layout.separator()
         
@@ -141,10 +161,12 @@ class QuickBrushSettings(bpy.types.Menu):
 
 
 def register():
+    bpy.utils.register_class(SculptDetailRefineMethods)
     bpy.utils.register_class(QuickSculptTools)
     bpy.utils.register_class(QuickBrushSettings)
     
 def unregister():
+    bpy.utils.unregister_class(SculptDetailRefineMethods)
     bpy.utils.unregister_class(QuickSculptTools)
     bpy.utils.unregister_class(QuickBrushSettings)
    
