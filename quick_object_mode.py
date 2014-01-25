@@ -71,28 +71,38 @@ class QuickObjectOptions(bpy.types.Menu):
 
 
 class QuickPETObjects(bpy.types.Menu):
-    bl_label = "Quick Proportional Editing Tool For Objects"
+    bl_label = "Object Mode PET"
     bl_idname = "object.quick_pet_menu"
 
     def draw(self, context):
         layout = self.layout
-
+        
+        mode = context.mode
+        editmodes = ('EDIT_MESH', 'EDIT_CURVE', 'EDIT_LATTICE', 'EDIT_SURFACE', 'EDIT_METABALL')
         pet = context.scene.tool_settings.use_proportional_edit_objects
 
-        if pet:
-            layout.operator("object.pet", "Disable PET")
-        else:
-            layout.operator("object.pet", "Enable Pet")
+        if mode == 'OBJECT':
+            if pet:
+                layout.operator("object.pet", "Disable PET")
+            else:
+                layout.operator("object.pet", "Enable PET")
+
+        elif mode in editmodes:
+            layout.operator("object.pet_edit", "Disable").setting = -1
+            layout.operator("object.pet_edit", "Enable").setting = 0
+            layout.operator("object.pet_edit", "Connected").setting = 1
+            layout.operator("object.pet_edit", "Projected").setting = 2
 
         layout.separator()
 
         layout.label("Brush Falloff")
-        layout.operator("brush.curve_preset", text="Smooth", icon='SMOOTHCURVE').shape = 'SMOOTH'
-        layout.operator("brush.curve_preset", text="Round", icon='SPHERECURVE').shape = 'ROUND'
-        layout.operator("brush.curve_preset", text="Root", icon='ROOTCURVE').shape = 'ROOT'
-        layout.operator("brush.curve_preset", text="Sharp", icon='SHARPCURVE').shape = 'SHARP'
-        layout.operator("brush.curve_preset", text="Line", icon='LINCURVE').shape = 'LINE'
-        layout.operator("brush.curve_preset", text="Max", icon='NOCURVE').shape = 'MAX'
+        layout.operator("object.pet_curve_falloff", text="Smooth", icon='SMOOTHCURVE').shape = 'SMOOTH'
+        layout.operator("object.pet_curve_falloff", text="Sphere", icon='SPHERECURVE').shape = 'SPHERE'
+        layout.operator("object.pet_curve_falloff", text="Root", icon='ROOTCURVE').shape = 'ROOT'
+        layout.operator("object.pet_curve_falloff", text="Sharp", icon='SHARPCURVE').shape = 'SHARP'
+        layout.operator("object.pet_curve_falloff", text="Linear", icon='LINCURVE').shape = 'LINEAR'
+        layout.operator("object.pet_curve_falloff", text="Constant", icon='NOCURVE').shape =  'CONSTANT'
+        layout.operator("object.pet_curve_falloff", text="Random", icon='RNDCURVE').shape =  'RANDOM'
 
 
 def register():

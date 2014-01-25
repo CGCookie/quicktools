@@ -755,25 +755,28 @@ class setObjectOrigin(bpy.types.Operator):
 # Creating operator for edit PET settings
 ################################################### 
 class petEditSettings(bpy.types.Operator):
-    """Toggle Setting For Mesh Proportional Editing Tool"""
-    bl_idname = "mesh.pet"
-    bl_label = "Toggle Mesh PET"
+    """Toggle Setting For Edit Mode Proportional Editing Tool"""
+    bl_idname = "object.pet_edit"
+    bl_label = "Toggle Edit Mode PET"
 
-    setting = bpy.props.StringProperty()
+
+    setting = bpy.props.IntProperty(name = "setting",
+                    description = "Change portional edit setting",
+                    default = 0)
 
     def execute(self, context):
-
-        setting = self.setting
-
-        if setting == 'use_pressure_size':
-            if unified_size:
-                value = unified.use_pressure_size
-                unified.use_pressure_size = not value 
-
+        if self.setting == -1:
+            context.tool_settings.proportional_edit = 'DISABLED'
+        if self.setting == 0:
+            context.tool_settings.proportional_edit =  'ENABLED'
+        if self.setting == 1:
+            context.tool_settings.proportional_edit = 'CONNECTED'
+        if self.setting == 2:
+            context.tool_settings.proportional_edit = 'PROJECTED'
         return {"FINISHED"}
 
 ################################################### 
-# Creating operator for object PET settings
+# Creating operators for PET settings
 ################################################### 
 class petObjectSettings(bpy.types.Operator):
     """Toggle Setting For Objects Proportional Editing Tool"""
@@ -787,6 +790,34 @@ class petObjectSettings(bpy.types.Operator):
 
         return {"FINISHED"}
 
+
+class petCurveFalloff(bpy.types.Operator):
+    """Set PET Curve Falloff"""
+    bl_idname = "object.pet_curve_falloff"
+    bl_label = "Set PET Curve Falloff"
+
+    shape = bpy.props.StringProperty()
+    
+    def execute(self, context):
+
+        if self.shape == 'SMOOTH':
+            context.tool_settings.proportional_edit_falloff = 'SMOOTH'
+        if self.shape == 'SPHERE':
+            context.tool_settings.proportional_edit_falloff = 'SPHERE'
+        if self.shape == 'ROOT':
+            context.tool_settings.proportional_edit_falloff = 'ROOT'
+        if self.shape == 'SHARP':
+            context.tool_settings.proportional_edit_falloff = 'SHARP'
+        if self.shape == 'LINEAR':
+            context.tool_settings.proportional_edit_falloff = 'LINEAR'
+        if self.shape == 'CONSTANT':
+            context.tool_settings.proportional_edit_falloff = 'CONSTANT'
+        if self.shape == 'RANDOM':
+            context.tool_settings.proportional_edit_falloff = 'RANDOM'
+
+        return {"FINISHED"}
+
+        
 ### ----------------------- Sculpt Operators ----------------------- ###
 
 ################################################### 
