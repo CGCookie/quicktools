@@ -488,7 +488,7 @@ class addRemesh(bpy.types.Operator):
         return not context.sculpt_object.use_dynamic_topology_sculpting
 
     def execute(self, context):
-        AddMod("REMESH", "Remesh")
+        addMod("REMESH", "Remesh")
         context.object.modifiers['Remesh'].mode = 'SMOOTH'
         return {"FINISHED"}
 
