@@ -30,31 +30,24 @@ class ModeSwitch(bpy.types.Menu):
         layout = self.layout  
 
         mode = bpy.context.object.mode
-        
-        # check the current mode and only display the relavent modes, e.g. don't show current mode              
-        if mode == 'EDIT' or mode == 'SCULPT' or mode == 'TEXTURE_PAINT' or mode == 'VERTEX_PAINT' or mode == 'WEIGHT_PAINT':
-            objectMode = layout.operator("object.working_mode", "Object Mode", icon="OBJECT_DATAMODE")
-            objectMode.setMode = 'OBJECT'  
-        
-        if mode == 'OBJECT' or mode == 'SCULPT' or mode == 'TEXTURE_PAINT' or mode == 'VERTEX_PAINT' or mode == 'WEIGHT_PAINT':
-            editMode = layout.operator("object.working_mode", "Edit Mode", icon="EDITMODE_HLT")
-            editMode.setMode = 'EDIT'
-        
-        if mode == 'EDIT' or mode == 'OBJECT' or mode == 'TEXTURE_PAINT' or mode == 'VERTEX_PAINT' or mode == 'WEIGHT_PAINT':
-            sculptMode = layout.operator("object.working_mode", "Sculpt Mode", icon="SCULPTMODE_HLT"    )
-            sculptMode.setMode = 'SCULPT'
-        
-        if mode == 'EDIT' or mode == 'OBJECT' or mode == 'SCULPT' or mode == 'TEXTURE_PAINT' or mode == 'WEIGHT_PAINT':
-            sculptMode = layout.operator("object.working_mode", "Vertex Paint", icon="VPAINT_HLT"    )
-            sculptMode.setMode = 'VERTEX_PAINT'
 
-        if mode == 'EDIT' or mode == 'OBJECT' or mode == 'SCULPT' or mode == 'TEXTURE_PAINT' or mode == 'VERTEX_PAINT':
-            sculptMode = layout.operator("object.working_mode", "Weight Paint", icon="WPAINT_HLT"    )
-            sculptMode.setMode = 'WEIGHT_PAINT'
+        objectMode = layout.operator("object.working_mode", "Object Mode", icon="OBJECT_DATAMODE")
+        objectMode.setMode = 'OBJECT'  
 
-        if mode == 'EDIT' or mode == 'OBJECT' or mode == 'SCULPT' or mode == 'VERTEX_PAINT' or mode == 'WEIGHT_PAINT':
-            sculptMode = layout.operator("object.working_mode", "Texture Paint", icon="TPAINT_HLT"    )
-            sculptMode.setMode = 'TEXTURE_PAINT'
+        editMode = layout.operator("object.working_mode", "Edit Mode", icon="EDITMODE_HLT")
+        editMode.setMode = 'EDIT'
+
+        sculptMode = layout.operator("object.working_mode", "Sculpt Mode", icon="SCULPTMODE_HLT"    )
+        sculptMode.setMode = 'SCULPT'
+
+        sculptMode = layout.operator("object.working_mode", "Vertex Paint", icon="VPAINT_HLT"    )
+        sculptMode.setMode = 'VERTEX_PAINT'
+
+        sculptMode = layout.operator("object.working_mode", "Weight Paint", icon="WPAINT_HLT"    )
+        sculptMode.setMode = 'WEIGHT_PAINT'
+
+        sculptMode = layout.operator("object.working_mode", "Texture Paint", icon="TPAINT_HLT"    )
+        sculptMode.setMode = 'TEXTURE_PAINT'
 
 
 def register():
