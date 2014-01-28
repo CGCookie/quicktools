@@ -89,10 +89,6 @@ def register():
    kmi.active = True
    addon_keymaps.append((km, kmi))
 
-   kmi = km.keymap_items.new('wm.call_menu', 'W', 'PRESS', alt=True)
-   kmi.properties.name = 'object.quick_pet_menu'
-   kmi.active = True
-   addon_keymaps.append((km, kmi))
 
    # create the object mode tools menu hotkey
    km = kc.keymaps.new(name='Object Mode')
@@ -101,6 +97,10 @@ def register():
    kmi.active = True
    addon_keymaps.append((km, kmi))
 
+   kmi = km.keymap_items.new('wm.call_menu', 'W', 'PRESS', alt=True)
+   kmi.properties.name = 'object.quick_pet_menu'
+   kmi.active = True
+   addon_keymaps.append((km, kmi))
 
    # create the object mode Display menu hotkey
    km = kc.keymaps.new(name='3D View', space_type='VIEW_3D')
@@ -116,6 +116,11 @@ def register():
    kmi.active = True
    addon_keymaps.append((km, kmi))
 
+   kmi = km.keymap_items.new('wm.call_menu', 'W', 'PRESS', alt=True)
+   kmi.properties.name = 'object.quick_pet_menu'
+   kmi.active = True
+   addon_keymaps.append((km, kmi))
+   
    # create the sculpt mode tools menu hotkey
    km = kc.keymaps.new(name='Sculpt')
    kmi = km.keymap_items.new('wm.call_menu', 'Q', 'PRESS')
