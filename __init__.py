@@ -12,7 +12,7 @@ bl_info = {
 
 import sys, os
 quicktoolsDirname = os.path.dirname(os.path.realpath(__file__))
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', directoryName))
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', quicktoolsDirname))
     
 if "bpy" in locals():
     import imp
