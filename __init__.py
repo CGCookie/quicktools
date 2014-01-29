@@ -11,8 +11,8 @@ bl_info = {
     "category": "3D View"}
 
 import sys, os
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'quicktools'))
-    
+quicktoolsDirname = os.path.dirname(os.path.realpath(__file__))
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', directoryName))
     
 if "bpy" in locals():
     import imp
