@@ -111,7 +111,7 @@ def addMod(modifier, name):
 # Add an Array modifier with object offset enabled 
 ###################################################      
 class addArray(bpy.types.Operator):
-    """Add a Array modifier with object offset, use 2nd selected object as offset object"""
+    """Add a Array modifier with object offset, use selected Empty as offset object"""
     bl_label = "Add Array Modifier"
     bl_idname = "object.add_array"
     bl_options = {'REGISTER', 'UNDO'}
@@ -215,7 +215,7 @@ class addBoolean(bpy.types.Operator):
 # Add an Cast modifier with target object assigned if selected 
 ###################################################      
 class addCast(bpy.types.Operator):
-    """Add a Cast modifier with, use selected empty as target object"""
+    """Add a Cast modifier with, use selected Empty as target object"""
     bl_label = "Add Cast Modifier"
     bl_idname = "object.add_cast"
     bl_options = {'REGISTER', 'UNDO'}   
@@ -277,7 +277,7 @@ class addCast(bpy.types.Operator):
 ################################################### 
     
 class addMirror(bpy.types.Operator):
-    """Add a Mirror modifier with clipping, use 2nd selected object as Mirror center"""
+    """Add a Mirror modifier with clipping, use selected Empty as mirror center"""
     bl_label = "Add Mirror Modifier"
     bl_idname = "object.add_mirror"
     bl_options = {'REGISTER', 'UNDO'}   
@@ -412,7 +412,7 @@ class addLattice(bpy.types.Operator):
 # Add a Screw modifier with an object axis set  
 ################################################### 
 class addScrew(bpy.types.Operator):
-    """Add a Screw modifier, use 2nd selected object as object axis"""
+    """Add a Screw modifier, use selected Empty as object axis"""
     bl_label = "Add Screw Modifier"
     bl_idname = "object.add_screw"
     bl_options = {'REGISTER', 'UNDO'}
