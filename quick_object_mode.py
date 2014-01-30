@@ -71,7 +71,7 @@ class QuickObjectOptions(bpy.types.Menu):
 
 
 class QuickPETObjects(bpy.types.Menu):
-    bl_label = "Object Mode PET"
+    bl_label = "Proportional Editing"
     bl_idname = "object.quick_pet_menu"
 
     def draw(self, context):
