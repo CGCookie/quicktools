@@ -151,12 +151,12 @@ def register():
 def unregister():
     # bpy.utils.unregister_class(QuickToolsPreferences)
 
-    quick_operators.unregister()
-    quick_object_mode.unregister()
-    quick_edit_mode.unregister()
-    quick_sculpt_mode.unregister()
-    quick_mode_switch.unregister()
     quick_scene.unregister()
+    quick_mode_switch.unregister()
+    quick_sculpt_mode.unregister()
+    quick_edit_mode.unregister()
+    quick_object_mode.unregister()
+    quick_operators.unregister()
     
     # remove the add-on keymaps
     for km, kmi in addon_keymaps:
