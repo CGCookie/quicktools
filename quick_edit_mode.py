@@ -1,5 +1,4 @@
 import bpy
-import os
 from bpy import context
 
 # creates a menu for edit mode tools         

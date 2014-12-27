@@ -1,5 +1,4 @@
 import bpy
-import os
 from bpy import context
 
 # adds an object mode menu 
