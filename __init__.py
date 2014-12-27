@@ -10,24 +10,13 @@ bl_info = {
     "tracker_url": "https://github.com/CGCookie/quicktools/issues",
     "category": "3D View"}
 
-import sys, os
-quicktoolsDirname = os.path.dirname(os.path.realpath(__file__))
-sys.path.append(os.path.join(os.path.dirname(__file__), '..', quicktoolsDirname))
-    
-if "bpy" in locals():
-    import imp
-    imp.reload(quick_operators)
-    imp.reload(quick_object_mode)
-    imp.reload(quick_edit_mode)
-    imp.reload(quick_sculpt_mode)
-    imp.reload(quick_mode_switch)
-    imp.reload(quick_scene)
-    print("Reloaded multifiles")
-	
-else:
-    from . import quick_operators, quick_object_mode, quick_edit_mode, quick_sculpt_mode, quick_mode_switch, quick_scene
-    
-    print("Imported multifiles")
+import os
+import sys
+
+# Add the current __file__ path to the search path
+sys.path.append(os.path.dirname(__file__))
+
+import bpy
 
 import quick_operators
 import quick_object_mode
@@ -36,30 +25,6 @@ import quick_sculpt_mode
 import quick_mode_switch
 import quick_scene
 
-import bpy
-from bpy.types import AddonPreferences
-
-#### Used for keymap preferences. It's quite buggy for now so so commenting. ####
-# import rna_keymap_ui
-
-# class QuickToolsPreferences(AddonPreferences):
-#     bl_idname = __package__
-
-#     def draw(self, context):
-#         layout = self.layout
-#         split = layout.split()
-        
-#         col = split.column()
-#         col.label(text="Keymaps")
-
-#         col = layout.column()
-#         kc = bpy.context.window_manager.keyconfigs.addon
-#         for km, kmi in addon_keymaps:
-#             #km = km.active()
-#             col.context_pointer_set("keymap", km)
-#             rna_keymap_ui.draw_kmi([], kc, km, kmi, col, 0)
-
-####
 
 addon_keymaps = []        
 
