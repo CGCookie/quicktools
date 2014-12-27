@@ -29,8 +29,6 @@ import quick_scene
 addon_keymaps = []        
 
 def register():
-   # bpy.utils.register_class(QuickToolsPreferences)
-
    quick_operators.register()
    quick_object_mode.register()
    quick_edit_mode.register()
@@ -114,8 +112,6 @@ def register():
    addon_keymaps.append((km, kmi))
  
 def unregister():
-    # bpy.utils.unregister_class(QuickToolsPreferences)
-
     quick_scene.unregister()
     quick_mode_switch.unregister()
     quick_sculpt_mode.unregister()
